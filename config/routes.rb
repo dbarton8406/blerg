@@ -13,9 +13,14 @@ Rails.application.routes.draw do
   root to: "example#hello"
 
 
-  ## User Routes
+  ## Registration Routes
   get "signup", to: "registrations#new"
-  post "users", to: "registrations#create"
+  post "signup", to: "registrations#create"
+
+  ## Session Routes
+  get "login", to: "sessions#new"
+  post "login", to: "sessions#create"
+  delete "login", to: "sessions#destroy"
 
   ## Posts Routes
   get "posts", to: "posts#index"

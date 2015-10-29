@@ -1,6 +1,6 @@
 <h1>New User</h1>
 
-<%= form_tag(users_path) do %>
+<%= form_tag(signup_path) do %>
     <% if @user.errors.any? %>
         <div class="form-errors">
             <h2><%= pluralize(@user.errors.count, "error") %> prohibited your user from being saved:</h2>

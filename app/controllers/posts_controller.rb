@@ -1,4 +1,7 @@
 class PostsController < ApplicationController
+  # before_action :authenticate_user!, only: [:new, :edit, :destroy, :create, :update]
+  before_action :authenticate_user!, except: [:index, :show]
+
   def new
     @post = Post.new
     render :new
@@ -37,14 +40,10 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to posts_path
-  end
-
-  def tagged
-    @tag = Tag.find_by(name: params[:name])
-    @posts = @tag.posts
-    render :tagged
+    if current_user.id == post.user_id
+      post.destroy
+      redirect_to posts_path
+    end
   end
 end
 

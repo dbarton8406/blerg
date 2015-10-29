@@ -1,0 +1,17 @@
+<h1>User Login</h1>
+
+<%= form_tag(login_path) do %>
+    <div class="login-field">
+        <%= label_tag "Email: " %>
+        <%= text_field_tag :email %>
+    </div>
+
+    <div class="login-field">
+        <%= label_tag "Password: " %>
+        <%= password_field_tag :password %>
+    </div>
+
+    <%= submit_tag "Login" %>
+<% end %>
+
+<%= link_to "Sign Up", signup_path %>

@@ -7,6 +7,14 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+    <nav>
+        <h3>Welcome to Blerg, <%= current_user.try(:full_name) %>!</h3>
+        <% if current_user %>
+            <%= link_to "Logout", login_path, method: "delete" %>
+        <% else %>
+            <%= link_to "Login", login_path %>
+        <% end %>
+    </nav>
 
 <%= yield %>
 
