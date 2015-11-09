@@ -35,7 +35,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    render :show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @post }
+      #format.json { render "show.json.jbuilder", status: :ok }
+    end
   end
 
   def destroy
