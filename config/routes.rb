@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   # put "posts/:id", to: "posts#update"
   # delete "posts/:id", to: "posts#destroy"
 
-  resources :posts, except: [:new, :edit]
+  resources :posts  # If you're an API, maybe add except: [:new, :edit]
 #  resources :posts, only: [:foo, :bar]
 
   get "tag/:name", to: "tags#tagged"
