@@ -9,7 +9,7 @@
 <%= link_to "Posts Index", posts_path %>
 
 <% if current_user %>
-  <%= link_to "Edit this Post", post_edit_path(@post) %>
+  <%= link_to "Edit this Post", edit_post_path(@post) %>
   <%= link_to "Nuke this Post", post_path(@post), method: :delete %>
 <% end %>
 
