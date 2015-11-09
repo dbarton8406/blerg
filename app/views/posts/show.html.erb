@@ -15,13 +15,14 @@
 
 <div class="comment-form">
     <h3>Add a Comment</h3>
-    <%= form_tag(post_comments_path(@post)) do %>
+    <% # render partial: "comments/form" %>
+    <%= form_for([@post, @comment]) do |f| %>
         <div class="comment-field">
-          <%= label_tag "Comment: " %>
-          <%= text_area_tag :comment, nil, cols: 40, rows: 5 %>
+          <%= f.label "Comment: " %>
+          <%= f.text_area :content %>
         </div>
 
-        <%= submit_tag "LET YOUR VOICE BE HEARD! YOU SO NEED TO BE HEARD!" %>
+        <%= f.submit "LET YOUR VOICE BE HEARD! YOU SO NEED TO BE HEARD!" %>
     <% end %>
 </div>
 
