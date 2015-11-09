@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
 
   ## Registration Routes
-  get "signup", to: "registrations#new"
-  post "signup", to: "registrations#create"
+#  get "signup", to: "registrations#new"
+#  post "signup", to: "registrations#create"
+
+  resources :signup, only: [:new, :create], controller: "registrations"
 
   ## Session Routes
   get "login", to: "sessions#new"
@@ -23,13 +25,16 @@ Rails.application.routes.draw do
   delete "login", to: "sessions#destroy"
 
   ## Posts Routes
-  get "posts", to: "posts#index"
-  get "posts/new", to: "posts#new"
-  post "posts", to: "posts#create"
-  get "posts/:id", to: "posts#show", as: "post"
-  get "posts/:id/edit", to: "posts#edit", as: "post_edit"
-  put "posts/:id", to: "posts#update"
-  delete "posts/:id", to: "posts#destroy"
+  # get "posts", to: "posts#index"
+  # get "posts/new", to: "posts#new"
+  # post "posts", to: "posts#create"
+  # get "posts/:id", to: "posts#show", as: "post"
+  # get "posts/:id/edit", to: "posts#edit", as: "post_edit"
+  # put "posts/:id", to: "posts#update"
+  # delete "posts/:id", to: "posts#destroy"
+
+  resources :posts, except: [:new, :edit]
+#  resources :posts, only: [:foo, :bar]
 
   get "tag/:name", to: "tags#tagged"
 
