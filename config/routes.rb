@@ -33,12 +33,18 @@ Rails.application.routes.draw do
   # put "posts/:id", to: "posts#update"
   # delete "posts/:id", to: "posts#destroy"
 
-  resources :posts  # If you're an API, maybe add except: [:new, :edit]
-#  resources :posts, only: [:foo, :bar]
+  resources :posts do
+#    post "comments", to: "comments#create"
+    resources :comments, only: [:create]
+  end
+
+  # post "posts/:id/comments", to: "comments#create", as: "comments"
+
+
+  #  Maybe if you're an API do: resources :posts, except: [:new, :edit]
 
   get "tag/:name", to: "tags#tagged"
 
-  post "posts/:id/comments", to: "comments#create", as: "comments"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
