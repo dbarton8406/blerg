@@ -12,6 +12,7 @@
             <h2><div class="notice"><%= flash[:notice] %></div></h2>
         <% end %>
         <% if current_user %>
+            <%= image_tag current_user.avatar.url(:thumb) %>
             <h3>Welcome to Blerg, <%= current_user.email %>!</h3>
             <%= link_to "Logout", login_path, method: "delete" %>
         <% else %>
