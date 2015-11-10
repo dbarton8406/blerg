@@ -14,8 +14,10 @@ Rails.application.routes.draw do
 
 
   ## Registration Routes
-  get "signup", to: "registrations#new"
-  post "signup", to: "registrations#create"
+#  get "signup", to: "registrations#new"
+#  post "signup", to: "registrations#create"
+
+  resources :signup, only: [:new, :create], controller: "registrations"
 
   ## Session Routes
   get "login", to: "sessions#new"
@@ -23,17 +25,26 @@ Rails.application.routes.draw do
   delete "login", to: "sessions#destroy"
 
   ## Posts Routes
-  get "posts", to: "posts#index"
-  get "posts/new", to: "posts#new"
-  post "posts", to: "posts#create"
-  get "posts/:id", to: "posts#show", as: "post"
-  get "posts/:id/edit", to: "posts#edit", as: "post_edit"
-  put "posts/:id", to: "posts#update"
-  delete "posts/:id", to: "posts#destroy"
+  # get "posts", to: "posts#index"
+  # get "posts/new", to: "posts#new"
+  # post "posts", to: "posts#create"
+  # get "posts/:id", to: "posts#show", as: "post"
+  # get "posts/:id/edit", to: "posts#edit", as: "post_edit"
+  # put "posts/:id", to: "posts#update"
+  # delete "posts/:id", to: "posts#destroy"
+
+  resources :posts do
+#    post "comments", to: "comments#create"
+    resources :comments, only: [:create]
+  end
+
+  # post "posts/:id/comments", to: "comments#create", as: "comments"
+
+
+  #  Maybe if you're an API do: resources :posts, except: [:new, :edit]
 
   get "tag/:name", to: "tags#tagged"
 
-  post "posts/:id/comments", to: "comments#create", as: "comments"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
