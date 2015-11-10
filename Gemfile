@@ -30,6 +30,9 @@ gem "kaminari"
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+# I like pictures.
+gem 'paperclip', '~> 4.3'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
