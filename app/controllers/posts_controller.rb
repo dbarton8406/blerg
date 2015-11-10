@@ -8,23 +8,19 @@ class PostsController < ApplicationController
   end
 
   def create
-    post = current_user.posts.create(title: params[:title],
-                                     content: params[:content],
-                                     tag_names: params[:tags],
-                                     written_at: DateTime.now)
+    post = current_user.posts.create(post_params)
     redirect_to post_path(post)
   end
 
   def edit
     @post = Post.find(params[:id])
+#    binding.pry
     render :edit
   end
 
   def update
     post = Post.find(params[:id])
-    post.update(title: params[:title],
-                content: params[:content],
-                tag_names: params[:tags])
+    post.update(post_params)
     redirect_to post_path(post)
   end
 
@@ -34,8 +30,13 @@ class PostsController < ApplicationController
   end
 
   def show
+    @comment = Comment.new
     @post = Post.find(params[:id])
-    render :show
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render json: @post }
+      #format.json { render "show.json.jbuilder", status: :ok }
+    end
   end
 
   def destroy
@@ -47,6 +48,11 @@ class PostsController < ApplicationController
       flash[:notice] = "I can't let you do that, Dave."
     end
     redirect_to posts_path
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:title, :tag_names, :content)
   end
 end
 
