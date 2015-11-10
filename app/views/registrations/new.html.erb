@@ -1,6 +1,6 @@
 <h1>New User</h1>
 
-<%= form_tag(signup_index_path) do %>
+<%= form_for(@user, url: signup_index_path, html: { multipart: true }) do |f| %>
     <% if @user.errors.any? %>
         <div class="form-errors">
             <h2><%= pluralize(@user.errors.count, "error") %> prohibited your user from being saved:</h2>
@@ -14,21 +14,26 @@
     <% end %>
 
     <div class="user-field">
-        <%= label_tag "Full Name: " %>
-        <%= text_field_tag :name %>
+        <%= f.label "Full Name: " %>
+        <%= f.text_field :full_name %>
     </div>
 
     <div class="user-field">
-        <%= label_tag "Email: " %>
-        <%= text_field_tag :email %>
+        <%= f.label "Email: " %>
+        <%= f.text_field :email %>
     </div>
 
     <div class="user-field">
-        <%= label_tag "Password " %>
-        <%= password_field_tag :password %>
+        <%= f.label "Password: " %>
+        <%= f.password_field :password %>
     </div>
 
-    <%= submit_tag "Sign Up" %>
+    <div class="user-field">
+        <%= f.label "Profile Picture: " %>
+        <%= f.file_field :avatar %>
+    </div>
+
+    <%= f.submit "Sign Up" %>
 <% end %>
 
 <%= link_to "Nevermind", posts_path %>
