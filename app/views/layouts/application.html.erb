@@ -8,11 +8,15 @@
 </head>
 <body>
     <nav>
-        <h3>Welcome to Blerg, <%= current_user.try(:full_name) %>!</h3>
+        <% if flash[:notice] %>
+            <h2><div class="notice"><%= flash[:notice] %></div></h2>
+        <% end %>
         <% if current_user %>
+            <h3>Welcome to Blerg, <%= current_user.email %>!</h3>
             <%= link_to "Logout", login_path, method: "delete" %>
         <% else %>
             <%= link_to "Login", login_path %>
+            <%= link_to "Sign Up", signup_path %>
         <% end %>
     </nav>
 

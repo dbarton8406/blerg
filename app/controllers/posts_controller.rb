@@ -41,9 +41,12 @@ class PostsController < ApplicationController
   def destroy
     post = Post.find(params[:id])
     if current_user.id == post.user_id
+      flash[:notice] = "Destroyed the post: #{post.title}"
       post.destroy
-      redirect_to posts_path
+    else
+      flash[:notice] = "I can't let you do that, Dave."
     end
+    redirect_to posts_path
   end
 end
 
