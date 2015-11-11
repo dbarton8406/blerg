@@ -34,4 +34,9 @@ class UserTest < ActiveSupport::TestCase
     refute user2.save
     assert user2.errors[:email].find { |msg| msg.include?("taken") }
   end
+
+  test "a user has many posts" do
+    user = users(:brit)
+    assert user.posts.count == 2
+  end
 end
