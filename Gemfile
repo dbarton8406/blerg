@@ -26,6 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Kaminari for pagination, why would I do it by hand?
 gem "kaminari"
 
+# Postgres is a lovely database. Let's use it!
+gem "pg"
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
@@ -42,9 +44,6 @@ group :development, :test do
 
   # I LOVE YOU SO MUCH PRY
   gem "pry"
-
-  # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
 end
 
 group :development do
@@ -56,6 +55,5 @@ group :development do
 end
 
 group :production do
-  gem "pg"
   gem "rails_12factor"
 end
