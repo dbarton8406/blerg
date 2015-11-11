@@ -35,7 +35,7 @@ Rails.application.routes.draw do
 
   resources :posts do
 #    post "comments", to: "comments#create"
-    resources :comments, only: [:create]
+    resources :comments, only: [:create, :edit, :destroy], controller: "posts"
   end
 
   # post "posts/:id/comments", to: "comments#create", as: "comments"
