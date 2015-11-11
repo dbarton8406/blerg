@@ -6,8 +6,6 @@ class User < ActiveRecord::Base
 
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
-  # validates :email, presence: true, uniqueness: true
-  # validates :password, presence: true
   validates_uniqueness_of :email
   validates_presence_of :email
 end
