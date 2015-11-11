@@ -2,14 +2,16 @@ require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
   test "emails must be present" do
-    user = User.new
+    user = User.first
+    user.email = nil
 
     refute user.save
     assert user.errors[:email].present?
   end
 
   test "users must have a password" do
-    user = User.new
+    user = users(:brit)
+    user.password = nil
 
     refute user.save
     assert user.errors[:password].present?
@@ -23,11 +25,12 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "user emails must be unique" do
-    user1 = User.new(email: "foo@bar.com", password: "cookies")
-    user2 = User.new(email: "foo@bar.com", password: "broked")
+    user1 = users(:brit)
+    user2 = users(:bob)
 
+    user2.email = user1.email
     assert_equal user1.email, user2.email
-    assert user1.save
+
     refute user2.save
     assert user2.errors[:email].find { |msg| msg.include?("taken") }
   end
