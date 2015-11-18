@@ -20,5 +20,16 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     render :show
   end
-end
 
+  def update
+    @post = Post.page(params[:id])
+    @post.update(title: params[:title],
+                 content: params[:content])
+    redirect_to post_path(@post)
+  end
+  
+  def edit
+    @post = Post.find(params[:id])
+    render :edit
+  end
+end

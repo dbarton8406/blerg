@@ -1,0 +1,13 @@
+<h2> Edit Post</h2>
+<%= form_tag (post_path(@post), method: "put") do %>
+<div class="edit-field">
+	<%= label_tag "Title: " %>
+	<%= text_field_tag :title, @post.title %>
+</div>
+<div class="edit-field">
+	<%= label_tag "Body: " %>
+	<%= text_area_tag :content, @post.content %>
+</div>
+<%= submit_tag "Edit Post" %>
+<% end %>
+<%= link_to "Back", :back %>
